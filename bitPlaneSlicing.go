@@ -34,5 +34,27 @@ func bitPlane() {
 			Image.Set(x, y, gray)
 		}
 	}
-	fmt.Sprintf("flag: %08b", flag)
+	bitP := 6
+	for x := 0; x < width; x++ {
+		for y := 0; y < height; y++ {
+			c := Image.At(x, y)
+			gray := c.(color.Gray)
+			sum := fmt.Sprintf("%c", fmt.Sprintf("%08b", gray.Y)[int(8-bitP)])
+			if sum == "1" {
+				gray.Y = 255
+			} else {
+				gray.Y = 0
+			}
+			Image.Set(x, y, gray)
+		}
+	}
+	outFile, err := os.Create("./Output/output.png")
+	if err != nil {
+		panic(err.Error())
+	}
+	defer outFile.Close()
+	err = png.Encode(outFile, Image)
+	if err != nil {
+		panic(err.Error())
+	}
 }
