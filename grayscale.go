@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"image"
 	"image/color"
 	"image/png"
@@ -74,7 +75,7 @@ func Avarage() {
 }
 
 func Luminosity() {
-	file, err := os.Open("./Input/image.png")
+	file, err := os.Open("./Input/Low.png")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -91,7 +92,7 @@ func Luminosity() {
 		for y := 0; y < height; y++ {
 			r, g, b, _ := img.At(x, y).RGBA()
 			gray := 0.21*float64(r) + 0.72*float64(g) + 0.07*float64(b)
-			//fmt.Println(r, " ", g, " ", b, " ", gray)
+			fmt.Println(r, " ", g, " ", b, " ", uint8(gray/256))
 			Image.Set(x, y, color.Gray{Y: uint8(gray / 256)})
 		}
 	}
