@@ -8,8 +8,8 @@ import (
 	"os"
 )
 
-func bitPlane() {
-	file, err := os.Open("./Input/image2.png")
+func bitPlane(data *bitPlaneSlicing) {
+	file, err := os.Open(data.input)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -34,12 +34,12 @@ func bitPlane() {
 			Image.Set(x, y, gray)
 		}
 	}
-	bitP := 6
+	// bitP := 1-9
 	for x := 0; x < width; x++ {
 		for y := 0; y < height; y++ {
 			c := Image.At(x, y)
 			gray := c.(color.Gray)
-			sum := fmt.Sprintf("%c", fmt.Sprintf("%08b", gray.Y)[int(8-bitP)])
+			sum := fmt.Sprintf("%c", fmt.Sprintf("%08b", gray.Y)[int(8-data.bitP)])
 			if sum == "1" {
 				gray.Y = 255
 			} else {
@@ -48,7 +48,7 @@ func bitPlane() {
 			Image.Set(x, y, gray)
 		}
 	}
-	outFile, err := os.Create("./Output/output.png")
+	outFile, err := os.Create(data.output)
 	if err != nil {
 		panic(err.Error())
 	}

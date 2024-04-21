@@ -72,7 +72,7 @@ func nhsvaFloat64ToRGBA(hf, sf, vf, af float64) (r uint32, g uint32, b uint32, a
 	return r16, g16, b16, a16
 }
 
-// NHSVA represents a non-alpha-premultiplied 32-bit HSV color.  Note that all
+// NHSVI represents a non-alpha-premultiplied 32-bit HSI color.  Note that all
 // color channels range from 0 to 255.  (It is more common for hue to range
 // from 0 to 359 and saturation and value to range from 0 to 1, but that's not
 // what we do here.)
@@ -80,7 +80,7 @@ type NHSIA struct {
 	H, S, I, A uint8
 }
 
-// nhsvaModel converts an arbitrary color to an NHSVA color.
+// nhsvaModel converts an arbitrary color to an NHSVI color.
 func nhsiaModel(c color.Color) color.Color {
 	// Handle the easy case first: already NHSVA.
 	if _, ok := c.(NHSIA); ok {

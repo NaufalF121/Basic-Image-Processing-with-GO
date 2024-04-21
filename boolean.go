@@ -1,14 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"image"
 	"image/png"
 	"os"
 )
 
-func invert() {
-	file, err := os.Open("./Input/binerA.png")
+func invert(data *boolean) {
+	file, err := os.Open(data.input1)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -20,12 +19,12 @@ func invert() {
 	}
 	bounds := img.Bounds()
 	width, height := bounds.Max.X, bounds.Max.Y
-	fmt.Println(image.Black)
+
 	Image := image.NewRGBA64(image.Rect(0, 0, width, height))
 	for x := 0; x < width; x++ {
 		for y := 0; y < height; y++ {
 			r, g, b, _ := img.At(x, y).RGBA()
-			fmt.Println(r, g, b)
+
 			if r == 65535 && g == 65535 && b == 65535 {
 				Image.Set(x, y, image.Black)
 			} else {
@@ -34,7 +33,7 @@ func invert() {
 
 		}
 	}
-	outFile, err := os.Create("./Output/output.png")
+	outFile, err := os.Create(data.output + "invert.png")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -45,13 +44,13 @@ func invert() {
 	}
 }
 
-func AND() {
-	file, err := os.Open("./Input/binerA.png")
+func AND(data *boolean) {
+	file, err := os.Open(data.input1)
 	if err != nil {
 		panic(err.Error())
 	}
 	defer file.Close()
-	file2, err := os.Open("./Input/binerB.png")
+	file2, err := os.Open(data.input2)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -79,7 +78,7 @@ func AND() {
 
 		}
 	}
-	outFile, err := os.Create("./Output/output.png")
+	outFile, err := os.Create(data.output + "AND.png")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -90,13 +89,13 @@ func AND() {
 	}
 }
 
-func OR() {
-	file, err := os.Open("./Input/binerA.png")
+func OR(data *boolean) {
+	file, err := os.Open(data.input1)
 	if err != nil {
 		panic(err.Error())
 	}
 	defer file.Close()
-	file2, err := os.Open("./Input/binerB.png")
+	file2, err := os.Open(data.input2)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -124,7 +123,7 @@ func OR() {
 
 		}
 	}
-	outFile, err := os.Create("./Output/output.png")
+	outFile, err := os.Create(data.output + "OR.png")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -135,13 +134,13 @@ func OR() {
 	}
 }
 
-func XOR() {
-	file, err := os.Open("./Input/binerA.png")
+func XOR(data *boolean) {
+	file, err := os.Open(data.input1)
 	if err != nil {
 		panic(err.Error())
 	}
 	defer file.Close()
-	file2, err := os.Open("./Input/binerB.png")
+	file2, err := os.Open(data.input2)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -169,7 +168,7 @@ func XOR() {
 
 		}
 	}
-	outFile, err := os.Create("./Output/output.png")
+	outFile, err := os.Create(data.output + "XOR.png")
 	if err != nil {
 		panic(err.Error())
 	}

@@ -3,9 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/spakin/hsvimage"
-	_ "github.com/spakin/hsvimage"
 	"github.com/spakin/hsvimage/hsvcolor"
-	_ "github.com/spakin/hsvimage/hsvcolor"
 	"image"
 	"image/draw"
 	"image/png"
