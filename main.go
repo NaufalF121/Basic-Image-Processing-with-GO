@@ -32,37 +32,45 @@ type ColorModel struct {
 	output   string
 }
 
+type geometry struct {
+	input    string
+	output   string
+	shifting int
+	Scale    int
+}
+
 func main() {
-	// bitplane
-	confBit := bitPlaneSlicing{
-		input:  input,
-		output: output + "bitplane.png",
-		bitP:   5,
-	}
-	bitPlane(&confBit)
-
-	// boolean operation
-	confBool := boolean{
-		input1: binerA,
-		input2: binerB,
-		output: output,
-	}
-	invert(&confBool) // in invert just take 1 input image so input1 is the one that used
-	AND(&confBool)
-	XOR(&confBool)
-	OR(&confBool)
-
-	// Color Model Operation
-	confColor := ColorModel{
-		input:    input,
-		channel1: true,
-		channel2: false,
-		channel3: false,
-		output:   output,
-	}
-	rgbToHsi(&confColor)
-	rgbToYUV(&confColor)
-	rgb2Cmyk(&confColor)
-	rgbtoYCbCr(&confColor)
+	//// bitplane
+	//confBit := bitPlaneSlicing{
+	//	input:  input,
+	//	output: output + "bitplane.png",
+	//	bitP:   5,
+	//}
+	//bitPlane(&confBit)
+	//
+	//// boolean operation
+	//confBool := boolean{
+	//	input1: binerA,
+	//	input2: binerB,
+	//	output: output,
+	//}
+	//invert(&confBool) // in invert just take 1 input image so input1 is the one that used
+	//AND(&confBool)
+	//XOR(&confBool)
+	//OR(&confBool)
+	//
+	//// Color Model Operation
+	//confColor := ColorModel{
+	//	input:    input,
+	//	channel1: true,
+	//	channel2: false,
+	//	channel3: false,
+	//	output:   output,
+	//}
+	//rgbToHsi(&confColor)
+	//rgbToYUV(&confColor)
+	//rgb2Cmyk(&confColor)
+	//rgbtoYCbCr(&confColor)
+	closing()
 
 }
